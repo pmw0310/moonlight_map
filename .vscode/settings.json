@@ -1,0 +1,35 @@
+{
+   "javascript.suggestionActions.enabled": false,
+   "files.eol": "\n",
+   "editor.tabSize": 3,
+   "editor.insertSpaces": true,
+   "editor.detectIndentation": false,
+   "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+   },
+   "[javascript]": {
+      "editor.formatOnSave": true
+   },
+   "[typescript]": {
+      "editor.formatOnSave": true
+   },
+   "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+   },
+   "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
+   },
+   "[markdown]": {
+      "editor.formatOnSave": false
+   },
+   "[yaml]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2,
+      "editor.autoIndent": "advanced",
+      "gitlens.codeLens.scopes": ["document"],
+      "editor.formatOnSave": false
+   },
+   "editor.fontFamily": "'D2Coding ligature', Menlo, Monaco, 'Courier New', monospace"
+}
