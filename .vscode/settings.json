@@ -4,31 +4,20 @@
    "editor.tabSize": 3,
    "editor.insertSpaces": true,
    "editor.detectIndentation": false,
-   "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-   },
+   "editor.formatOnSave": true,
    "[javascript]": {
-      "editor.formatOnSave": true
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
    "[typescript]": {
-      "editor.formatOnSave": true
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
    "[html]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
    "[css]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
    "[markdown]": {
-      "editor.formatOnSave": false
-   },
-   "[yaml]": {
-      "editor.insertSpaces": true,
-      "editor.tabSize": 2,
-      "editor.autoIndent": "advanced",
-      "gitlens.codeLens.scopes": ["document"],
       "editor.formatOnSave": false
    },
    "editor.fontFamily": "'D2Coding ligature', Menlo, Monaco, 'Courier New', monospace"
