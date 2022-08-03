@@ -24,17 +24,9 @@ const MarkerIcon = new Icon({
 });
 
 const App: React.FC = () => {
-   const [, setInitialPosition] = useState<LatLngTuple>([0, 0]);
    const [selectedPosition, setSelectedPosition] = useState<LatLngTuple>([
       0, 0,
    ]);
-
-   useEffect(() => {
-      navigator.geolocation.getCurrentPosition(position => {
-         const { latitude, longitude } = position.coords;
-         setInitialPosition([latitude, longitude]);
-      });
-   }, []);
 
    const Markers = () => {
       useMapEvents({
