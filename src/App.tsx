@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
+import {
+   MapContainer,
+   Marker,
+   Popup,
+   ImageOverlay,
+   useMapEvents,
+} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
 
-const position: LatLngTuple = [1024, 1024];
 const bounds: LatLngBoundsLiteral = [
    [1, 1],
    [1024, 1024],
@@ -19,22 +24,47 @@ const MarkerIcon = new Icon({
 });
 
 const App: React.FC = () => {
+   const [, setInitialPosition] = useState<LatLngTuple>([0, 0]);
+   const [selectedPosition, setSelectedPosition] = useState<LatLngTuple>([
+      0, 0,
+   ]);
+
+   useEffect(() => {
+      navigator.geolocation.getCurrentPosition(position => {
+         const { latitude, longitude } = position.coords;
+         setInitialPosition([latitude, longitude]);
+      });
+   }, []);
+
+   const Markers = () => {
+      useMapEvents({
+         click(e) {
+            console.log('click', e.latlng.lat, e.latlng.lng);
+            setSelectedPosition([e.latlng.lat, e.latlng.lng]);
+         },
+      });
+
+      return selectedPosition ? (
+         <Marker
+            icon={MarkerIcon}
+            key={selectedPosition[0]}
+            position={selectedPosition}
+            interactive={false}
+         />
+      ) : null;
+   };
+
    return (
-      <div style={{ height: '100vh' }}>
+      <div className="h-screen">
          <MapContainer
+            className="h-full"
             maxZoom={2}
             maxBounds={bounds}
-            // scrollWheelZoom={false}
             crs={CRS.Simple}
             bounds={bounds}
-            style={{ height: '100%' }}
          >
-            <ImageOverlay url="/maps/test_map.png" bounds={bounds} />
-            <Marker position={position} icon={MarkerIcon}>
-               <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-               </Popup>
-            </Marker>
+            <ImageOverlay url="/maps/gangnam.png" bounds={bounds} />
+            <Markers />
          </MapContainer>
       </div>
    );
