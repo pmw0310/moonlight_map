@@ -10,10 +10,12 @@ import {
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import { Icon } from 'leaflet';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerIcon from './marker.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { inRange } from 'lodash';
+import { Navigate, useParams, useSearchParams } from 'react-router-dom';
+import { inRange, get } from 'lodash';
+import { Helmet } from 'react-helmet-async';
+import mapsData from '../maps.json';
 
 const bounds: LatLngBoundsLiteral = [
    [1, 1],
@@ -27,8 +29,8 @@ const maxBounds: LatLngBoundsLiteral = [
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
-   iconSize: [25, 41],
-   iconAnchor: [12, 41],
+   iconSize: [26, 26],
+   iconAnchor: [13, 13],
 });
 
 const Map: React.FC = () => {
@@ -48,7 +50,17 @@ const Map: React.FC = () => {
       })()
    );
 
+   const mapData = useMemo(() => {
+      if (!mapName) {
+         return;
+      }
+      return get(mapsData, mapName);
+   }, [mapName]);
+
    const mapUrl = useMemo(() => `/maps/${mapName}.png`, [mapName]);
+
+   const posStr =
+      selectedPosition && `${selectedPosition[1]},${selectedPosition[0]}`;
 
    const Markers: React.FC = () => {
       useMapEvents({
@@ -67,14 +79,15 @@ const Map: React.FC = () => {
                return;
             }
 
-            setSearchParams({
-               p: encodeURIComponent(pos.join(' ')),
-            });
+            setSearchParams(
+               {
+                  p: encodeURIComponent(pos.join(' ')),
+               },
+               { replace: true }
+            );
             setSelectedPosition(pos);
          },
       });
-
-      const posStr = selectedPosition?.join(', ');
 
       return selectedPosition ? (
          <Marker
@@ -86,7 +99,7 @@ const Map: React.FC = () => {
             <Tooltip
                className="remove-bubble pos-tooltip"
                direction="top"
-               offset={[0, -41]}
+               offset={[0, -8]}
                opacity={1}
                permanent
             >
@@ -96,20 +109,29 @@ const Map: React.FC = () => {
       ) : null;
    };
 
+   if (!mapData) {
+      return <Navigate replace to="/404" />;
+   }
+
    return (
-      <div className="h-screen">
-         <MapContainer
-            className="h-full"
-            maxZoom={2}
-            maxBounds={maxBounds}
-            crs={CRS.Simple}
-            bounds={bounds}
-            attributionControl={false}
-         >
-            <ImageOverlay url={mapUrl} bounds={bounds} />
-            <Markers />
-         </MapContainer>
-      </div>
+      <>
+         <Helmet>
+            <title>{`${mapData.locale}${posStr ? ` (${posStr})` : ''}`}</title>
+         </Helmet>
+         <div className="h-screen">
+            <MapContainer
+               className="h-full"
+               maxZoom={2}
+               maxBounds={maxBounds}
+               crs={CRS.Simple}
+               bounds={bounds}
+               attributionControl={false}
+            >
+               <ImageOverlay url={mapUrl} bounds={bounds} />
+               <Markers />
+            </MapContainer>
+         </div>
+      </>
    );
 };
 

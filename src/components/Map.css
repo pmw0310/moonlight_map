@@ -12,7 +12,6 @@
 }
 
 .pos-tooltip.leaflet-tooltip {
-   top: 6px;
    font-size: 16px;
    font-weight: 600;
    text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;

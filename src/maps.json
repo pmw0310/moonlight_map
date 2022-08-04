@@ -1,0 +1,41 @@
+{
+   "gaebong": {
+      "locale": "개봉"
+   },
+   "gangnam": {
+      "locale": "강남"
+   },
+   "dongwol": {
+      "locale": "동월"
+   },
+   "ihwa": {
+      "locale": "이화"
+   },
+   "jincheon": {
+      "locale": "진천"
+   },
+   "pachok": {
+      "locale": "파촉"
+   },
+   "seohae": {
+      "locale": "서해"
+   },
+   "unyeon": {
+      "locale": "연운"
+   },
+   "yangju": {
+      "locale": "양주"
+   },
+   "haehwaju": {
+      "locale": "해하주"
+   },
+   "hyenogho": {
+      "locale": "형호"
+   },
+   "hyeopgaekdo": {
+      "locale": "협죽도"
+   },
+   "jeonjang": {
+      "locale": "전장"
+   }
+}

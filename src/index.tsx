@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(
    document.getElementById('root') as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
    <React.StrictMode>
       <HashRouter>
-         <App />
+         <HelmetProvider>
+            <App />
+         </HelmetProvider>
       </HashRouter>
    </React.StrictMode>
 );
