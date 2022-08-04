@@ -36,15 +36,15 @@ const Map: React.FC = () => {
    const [searchParams, setSearchParams] = useSearchParams();
    const [selectedPosition, setSelectedPosition] = useState<LatLngTuple | null>(
       (() => {
-         const l = searchParams.get('p');
+         const p = searchParams.get('p');
 
          if (!l) {
             return null;
          }
 
-         return decodeURIComponent(l)
+         return decodeURIComponent(p)
             .split(' ')
-            .map(l => Number(l)) as LatLngTuple;
+            .map(p => Number(p)) as LatLngTuple;
       })()
    );
 
@@ -68,7 +68,7 @@ const Map: React.FC = () => {
             }
 
             setSearchParams({
-               l: encodeURIComponent(pos.join(' ')),
+               p: encodeURIComponent(pos.join(' ')),
             });
             setSelectedPosition(pos);
          },
