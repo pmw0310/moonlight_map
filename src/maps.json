@@ -1,41 +1,54 @@
 {
    "gaebong": {
-      "locale": "개봉"
+      "locale": "개봉",
+      "backgroundColor": "#638B81"
    },
    "gangnam": {
-      "locale": "강남"
+      "locale": "강남",
+      "backgroundColor": "#7E929A"
    },
    "dongwol": {
-      "locale": "동월"
+      "locale": "동월",
+      "backgroundColor": "#5D7884"
    },
    "ihwa": {
-      "locale": "이화"
+      "locale": "이화",
+      "backgroundColor": "#5D8D97"
    },
    "jincheon": {
-      "locale": "진천"
+      "locale": "진천",
+      "backgroundColor": "#B2C3D1"
    },
    "pachok": {
-      "locale": "파촉"
+      "locale": "파촉",
+      "backgroundColor": "#83AAA8"
    },
    "seohae": {
-      "locale": "서해"
+      "locale": "서해",
+      "backgroundColor": "#A58E72"
    },
    "unyeon": {
-      "locale": "연운"
+      "locale": "연운",
+      "backgroundColor": "#856D5B"
    },
    "yangju": {
-      "locale": "양주"
+      "locale": "양주",
+      "backgroundColor": "#5D8579"
    },
    "haehwaju": {
-      "locale": "해하주"
+      "locale": "해하주",
+      "backgroundColor": "#6A898B"
    },
-   "hyenogho": {
-      "locale": "형호"
+   "hyeongho": {
+      "locale": "형호",
+      "backgroundColor": "#7A969B"
    },
    "hyeopgaekdo": {
-      "locale": "협죽도"
+      "locale": "협죽도",
+      "backgroundColor": "#4F758C"
    },
    "jeonjang": {
-      "locale": "전장"
+      "locale": "전장",
+      "backgroundColor": "#5A7C68"
    }
 }

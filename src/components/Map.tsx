@@ -114,19 +114,22 @@ const Map: React.FC = () => {
       return <Navigate replace to="/404" />;
    }
 
+
    return (
       <>
          <Helmet>
             <title>{`${mapData.locale}${posStr ? ` (${posStr})` : ''}`}</title>
          </Helmet>
-         <div className="h-screen">
+         <div className="w-screen h-screen">
             <MapContainer
-               className="h-full"
+               className="w-full h-full"
+               minZoom={-1}
                maxZoom={2}
-               maxBounds={maxBounds}
                crs={CRS.Simple}
                bounds={bounds}
+               maxBounds={maxBounds}
                attributionControl={false}
+               style={{ backgroundColor: mapData.backgroundColor }}
             >
                <ImageOverlay url={mapUrl} bounds={bounds} />
                <Markers />
