@@ -1,0 +1,19 @@
+.remove-bubble.leaflet-tooltip {
+   background-color: transparent;
+   border: 0;
+   border-radius: 0;
+   color: #222;
+   box-shadow: none;
+   margin: 0;
+}
+
+.remove-bubble.leaflet-tooltip::before {
+   display: none;
+}
+
+.pos-tooltip.leaflet-tooltip {
+   top: 6px;
+   font-size: 16px;
+   font-weight: 600;
+   text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
+}

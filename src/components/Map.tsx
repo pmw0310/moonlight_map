@@ -5,8 +5,10 @@ import {
    Popup,
    ImageOverlay,
    useMapEvents,
+   Tooltip,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import './Map.css';
 import { Icon } from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
@@ -29,12 +31,12 @@ const MarkerIcon = new Icon({
    iconAnchor: [12, 41],
 });
 
-const App: React.FC = () => {
+const Map: React.FC = () => {
    const { mapName } = useParams();
    const [searchParams, setSearchParams] = useSearchParams();
    const [selectedPosition, setSelectedPosition] = useState<LatLngTuple | null>(
       (() => {
-         const l = searchParams.get('l');
+         const l = searchParams.get('p');
 
          if (!l) {
             return null;
@@ -72,13 +74,25 @@ const App: React.FC = () => {
          },
       });
 
+      const posStr = selectedPosition?.join(', ');
+
       return selectedPosition ? (
          <Marker
             icon={MarkerIcon}
-            key={selectedPosition[0]}
+            key={posStr}
             position={selectedPosition}
             interactive={false}
-         />
+         >
+            <Tooltip
+               className="remove-bubble pos-tooltip"
+               direction="top"
+               offset={[0, -41]}
+               opacity={1}
+               permanent
+            >
+               {posStr}
+            </Tooltip>
+         </Marker>
       ) : null;
    };
 
@@ -99,4 +113,4 @@ const App: React.FC = () => {
    );
 };
 
-export default App;
+export default Map;
