@@ -38,7 +38,7 @@ const Map: React.FC = () => {
       (() => {
          const p = searchParams.get('p');
 
-         if (!l) {
+         if (!p) {
             return null;
          }
 
