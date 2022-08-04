@@ -60,7 +60,8 @@ const Map: React.FC = () => {
    const mapUrl = useMemo(() => `/maps/${mapName}.png`, [mapName]);
 
    const posStr =
-      selectedPosition && `${selectedPosition[1]},${selectedPosition[0]}`;
+      selectedPosition &&
+      `${Math.round(selectedPosition[1])},${Math.round(selectedPosition[0])}`;
 
    const Markers: React.FC = () => {
       useMapEvents({
