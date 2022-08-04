@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>404</title>
+   </head>
+   <body>
+      <script type="text/javascript">
+         function getOrigin() {
+            if (window.location.origin) return window.location.origin;
+            return (
+               window.location.protocol +
+               '//' +
+               window.location.hostname +
+               (window.location.port ? ':' + window.location.port : '')
+            );
+         }
+         window.location.replace(`${getOrigin()}/#/404`);
+      </script>
+   </body>
+</html>
