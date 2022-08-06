@@ -17,15 +17,15 @@ import { inRange, get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 
-const bounds: LatLngBoundsLiteral = [
-   [1, 1],
-   [1024, 1024],
-];
+// const bounds: LatLngBoundsLiteral = [
+//    [1, 1],
+//    [1024, 1024],
+// ];
 
-const maxBounds: LatLngBoundsLiteral = [
-   [-511, -511],
-   [1536, 1536],
-];
+// const maxBounds: LatLngBoundsLiteral = [
+//    [-511, -511],
+//    [1536, 1536],
+// ];
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
@@ -70,6 +70,7 @@ const Map: React.FC = () => {
                latlng: { lat, lng },
             } = e;
             const pos: LatLngTuple = [lat, lng];
+            const bounds: LatLngBoundsLiteral = mapData.bounds;
 
             const isInRange = pos.every((p, i) => {
                const [min, max] = bounds.map(b => b[i]);
@@ -126,12 +127,11 @@ const Map: React.FC = () => {
                minZoom={-1}
                maxZoom={2}
                crs={CRS.Simple}
-               bounds={bounds}
-               maxBounds={maxBounds}
+               bounds={mapData.bounds}
                attributionControl={false}
                style={{ backgroundColor: mapData.backgroundColor }}
             >
-               <ImageOverlay url={mapUrl} bounds={bounds} />
+               <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
                <Markers />
             </MapContainer>
          </div>

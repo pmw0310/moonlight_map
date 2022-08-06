@@ -1,54 +1,324 @@
 {
    "gaebong": {
       "locale": "개봉",
-      "backgroundColor": "#638B81"
+      "backgroundColor": "#638B81",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "gangnam": {
       "locale": "강남",
-      "backgroundColor": "#7E929A"
+      "backgroundColor": "#7E929A",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "dongwol": {
       "locale": "동월",
-      "backgroundColor": "#5D7884"
+      "backgroundColor": "#5D7884",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "ihwa": {
       "locale": "이화",
-      "backgroundColor": "#5D8D97"
+      "backgroundColor": "#5D8D97",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "jincheon": {
       "locale": "진천",
-      "backgroundColor": "#B2C3D1"
+      "backgroundColor": "#B2C3D1",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "pachok": {
       "locale": "파촉",
-      "backgroundColor": "#83AAA8"
+      "backgroundColor": "#83AAA8",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "seohae": {
       "locale": "서해",
-      "backgroundColor": "#A58E72"
+      "backgroundColor": "#A58E72",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "unyeon": {
       "locale": "연운",
-      "backgroundColor": "#856D5B"
+      "backgroundColor": "#856D5B",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "yangju": {
       "locale": "양주",
-      "backgroundColor": "#5D8579"
+      "backgroundColor": "#5D8579",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "haehwaju": {
       "locale": "해하주",
-      "backgroundColor": "#6A898B"
+      "backgroundColor": "#6A898B",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "hyeongho": {
       "locale": "형호",
-      "backgroundColor": "#7A969B"
+      "backgroundColor": "#7A969B",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    },
    "hyeopgaekdo": {
       "locale": "협죽도",
-      "backgroundColor": "#4F758C"
+      "backgroundColor": "#4F758C",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "hwanggung": {
+      "locale": "황궁",
+      "backgroundColor": "#5d878c",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            512,
+            512
+         ]
+      ]
+   },
+   "cheonuigak": {
+      "locale": "천의각",
+      "backgroundColor": "#a09888",
+      "bounds": [
+         [
+            1,
+            66
+         ],
+         [
+            95,
+            160
+         ]
+      ]
+   },
+   "gaekjan": {
+      "locale": "객잔",
+      "backgroundColor": "#a09888",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            100,
+            100
+         ]
+      ]
+   },
+   "yeongeumru": {
+      "locale": "영음루",
+      "backgroundColor": "#9e98a1",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "yongsusan": {
+      "locale": "용수산",
+      "backgroundColor": "#ae9274",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "changogaekjan": {
+      "locale": "창오객잔",
+      "backgroundColor": "#5A7C68",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "chwiwolgeo": {
+      "locale": "취월거",
+      "backgroundColor": "#656b8e",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "manseolgul": {
+      "locale": "만설굴",
+      "backgroundColor": "#95aabf",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "ildaejongsa": {
+      "locale": "일대종사",
+      "backgroundColor": "#263537",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            2048,
+            2048
+         ]
+      ]
    },
    "jeonjang": {
       "locale": "전장",
-      "backgroundColor": "#5A7C68"
+      "backgroundColor": "#5A7C68",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
+   "yeonhapjeon": {
+      "locale": "연합전",
+      "backgroundColor": "#668586",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
    }
 }
