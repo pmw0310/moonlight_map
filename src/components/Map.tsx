@@ -6,6 +6,8 @@ import {
    ImageOverlay,
    useMapEvents,
    Tooltip,
+   LayerGroup,
+   Circle
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
@@ -16,16 +18,7 @@ import { Navigate, useParams, useSearchParams } from 'react-router-dom';
 import { inRange, get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
-
-// const bounds: LatLngBoundsLiteral = [
-//    [1, 1],
-//    [1024, 1024],
-// ];
-
-// const maxBounds: LatLngBoundsLiteral = [
-//    [-511, -511],
-//    [1536, 1536],
-// ];
+import LayerControl, { GroupedLayer } from './LayerControl';
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
@@ -129,10 +122,43 @@ const Map: React.FC = () => {
                crs={CRS.Simple}
                bounds={mapData.bounds}
                attributionControl={false}
+               doubleClickZoom={false}
                style={{ backgroundColor: mapData.backgroundColor }}
             >
                <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
                <Markers />
+               <LayerControl position="topright">
+                  <GroupedLayer checked name="Layer Group with Circles" group="테스트">
+                     <LayerGroup>
+                        <Circle
+                           center={[10, 10]}
+                           pathOptions={{ fillColor: 'blue' }}
+                           radius={200}
+                        />
+                        <Circle
+                           center={[20, 20]}
+                           pathOptions={{ fillColor: 'red' }}
+                           radius={100}
+                           stroke={false}
+                        />
+                     </LayerGroup>
+                  </GroupedLayer>
+                  <GroupedLayer name="Layer Group with Circles2" group="테스트2">
+                     <LayerGroup>
+                        <Circle
+                           center={[300, 300]}
+                           pathOptions={{ fillColor: 'blue' }}
+                           radius={200}
+                        />
+                        <Circle
+                           center={[400, 400]}
+                           pathOptions={{ fillColor: 'red' }}
+                           radius={100}
+                           stroke={false}
+                        />
+                     </LayerGroup>
+                  </GroupedLayer>
+               </LayerControl>
             </MapContainer>
          </div>
       </>
