@@ -29,8 +29,8 @@ import mapsData from '../maps.json';
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
-   iconSize: [26, 26],
-   iconAnchor: [13, 13],
+   iconSize: [20, 20],
+   iconAnchor: [10, 10],
 });
 
 const Map: React.FC = () => {
@@ -101,7 +101,7 @@ const Map: React.FC = () => {
             <Tooltip
                className="remove-bubble pos-tooltip"
                direction="top"
-               offset={[0, -8]}
+               offset={[0, -4]}
                opacity={1}
                permanent
             >
@@ -125,7 +125,7 @@ const Map: React.FC = () => {
             <MapContainer
                className="w-full h-full"
                minZoom={-1}
-               maxZoom={2}
+               maxZoom={4}
                crs={CRS.Simple}
                bounds={mapData.bounds}
                attributionControl={false}

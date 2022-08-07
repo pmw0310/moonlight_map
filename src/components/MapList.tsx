@@ -14,6 +14,9 @@ const MapList: React.FC = () => {
             <title>천애명월도m 지도 목록</title>
          </Helmet>
          <Container fixed>
+            <div className="font-bold my-3">
+               * 좌표 검증 못함
+            </div>
             {mapKeys.map(key => (
                <div key={key}>
                   <Link to={`/map/${key}`}>

@@ -168,7 +168,7 @@
       ]
    },
    "hwanggung": {
-      "locale": "황궁",
+      "locale": "황궁*",
       "backgroundColor": "#5d878c",
       "bounds": [
          [
@@ -210,7 +210,7 @@
       ]
    },
    "yeongeumru": {
-      "locale": "영음루",
+      "locale": "영음루*",
       "backgroundColor": "#9e98a1",
       "bounds": [
          [
@@ -224,7 +224,7 @@
       ]
    },
    "yongsusan": {
-      "locale": "용수산",
+      "locale": "용수산*",
       "backgroundColor": "#ae9274",
       "bounds": [
          [
@@ -238,7 +238,7 @@
       ]
    },
    "changogaekjan": {
-      "locale": "창오객잔",
+      "locale": "창오객잔*",
       "backgroundColor": "#5A7C68",
       "bounds": [
          [
@@ -252,7 +252,7 @@
       ]
    },
    "chwiwolgeo": {
-      "locale": "취월거",
+      "locale": "취월거*",
       "backgroundColor": "#656b8e",
       "bounds": [
          [
@@ -266,7 +266,7 @@
       ]
    },
    "manseolgul": {
-      "locale": "만설굴",
+      "locale": "만설굴*",
       "backgroundColor": "#95aabf",
       "bounds": [
          [
@@ -276,6 +276,34 @@
          [
             1024,
             1024
+         ]
+      ]
+   },
+   "prison1": {
+      "locale": "감옥1*",
+      "backgroundColor": "#b89d79",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            300,
+            300
+         ]
+      ]
+   },
+   "prison2": {
+      "locale": "감옥2*",
+      "backgroundColor": "#b89d79",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            300,
+            300
          ]
       ]
    },
@@ -294,7 +322,7 @@
       ]
    },
    "jeonjang": {
-      "locale": "전장",
+      "locale": "전장*",
       "backgroundColor": "#5A7C68",
       "bounds": [
          [
@@ -308,7 +336,7 @@
       ]
    },
    "yeonhapjeon": {
-      "locale": "연합전",
+      "locale": "연합전*",
       "backgroundColor": "#668586",
       "bounds": [
          [
