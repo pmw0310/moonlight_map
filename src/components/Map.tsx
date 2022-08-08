@@ -7,7 +7,7 @@ import {
    useMapEvents,
    Tooltip,
    LayerGroup,
-   Circle
+   Circle,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
@@ -26,6 +26,15 @@ const MarkerIcon = new Icon({
    iconAnchor: [10, 10],
 });
 
+const testWebP = (callback: (support: boolean) => void) => {
+   const webP = new Image();
+   webP.onload = webP.onerror = () => {
+      callback(webP.height === 2);
+   };
+   webP.src =
+      'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+};
+
 const Map: React.FC = () => {
    const { mapName } = useParams();
    const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +52,8 @@ const Map: React.FC = () => {
       })()
    );
 
+   const [mapUrl, setMapUrl] = useState<string | null>(null);
+
    const mapData = useMemo(() => {
       if (!mapName) {
          return;
@@ -50,7 +61,11 @@ const Map: React.FC = () => {
       return get(mapsData, mapName);
    }, [mapName]);
 
-   const mapUrl = useMemo(() => `/maps/${mapName}.png`, [mapName]);
+   useEffect(() => {
+      testWebP(support => {
+         setMapUrl(`/maps/${mapName}.${support ? 'webp' : 'png'}`);
+      });
+   }, [mapName]);
 
    const posStr =
       selectedPosition &&
@@ -104,10 +119,13 @@ const Map: React.FC = () => {
       ) : null;
    };
 
+   if (!mapUrl) {
+      return <></>;
+   }
+
    if (!mapData) {
       return <Navigate replace to="/404" />;
    }
-
 
    return (
       <>
@@ -127,8 +145,12 @@ const Map: React.FC = () => {
             >
                <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
                <Markers />
-               <LayerControl position="topright">
-                  <GroupedLayer checked name="Layer Group with Circles" group="테스트">
+               {/* <LayerControl position="topright">
+                  <GroupedLayer
+                     checked
+                     name="Layer Group with Circles"
+                     group="테스트"
+                  >
                      <LayerGroup>
                         <Circle
                            center={[10, 10]}
@@ -143,7 +165,10 @@ const Map: React.FC = () => {
                         />
                      </LayerGroup>
                   </GroupedLayer>
-                  <GroupedLayer name="Layer Group with Circles2" group="테스트2">
+                  <GroupedLayer
+                     name="Layer Group with Circles2"
+                     group="테스트2"
+                  >
                      <LayerGroup>
                         <Circle
                            center={[300, 300]}
@@ -158,7 +183,7 @@ const Map: React.FC = () => {
                         />
                      </LayerGroup>
                   </GroupedLayer>
-               </LayerControl>
+               </LayerControl> */}
             </MapContainer>
          </div>
       </>
