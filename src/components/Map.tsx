@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import {
    MapContainer,
    Marker,
@@ -11,7 +12,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
-import { Icon } from 'leaflet';
+import L, { Icon } from 'leaflet';
 import markerIcon from './marker.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
 import { Navigate, useParams, useSearchParams } from 'react-router-dom';
@@ -19,11 +20,20 @@ import { inRange, get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
+import '../App.css';
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
    iconSize: [20, 20],
    iconAnchor: [10, 10],
+});
+
+const divIcon = L.divIcon({
+   className: '',
+   html: ReactDOMServer.renderToString(<div className="test" />),
+   iconSize: [0, 0],
+   iconAnchor: [0, 0],
+   popupAnchor: [0, 0],
 });
 
 const testWebP = (callback: (support: boolean) => void) => {
@@ -100,22 +110,31 @@ const Map: React.FC = () => {
       });
 
       return selectedPosition ? (
-         <Marker
-            icon={MarkerIcon}
-            key={posStr}
-            position={selectedPosition}
-            interactive={false}
-         >
-            <Tooltip
-               className="remove-bubble pos-tooltip"
-               direction="top"
-               offset={[0, -4]}
+         <>
+            <Marker
+               icon={divIcon}
+               key={`${posStr}-test`}
+               position={selectedPosition}
                opacity={1}
-               permanent
+               interactive={true}
+            />
+            <Marker
+               icon={MarkerIcon}
+               key={posStr}
+               position={selectedPosition}
+               interactive={true}
             >
-               {posStr}
-            </Tooltip>
-         </Marker>
+               <Tooltip
+                  className="remove-bubble pos-tooltip"
+                  direction="top"
+                  offset={[0, -4]}
+                  opacity={1}
+                  permanent
+               >
+                  {posStr}
+               </Tooltip>
+            </Marker>
+         </>
       ) : null;
    };
 
