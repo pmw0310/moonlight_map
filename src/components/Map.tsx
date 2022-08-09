@@ -15,12 +15,11 @@ import './Map.css';
 import L, { Icon } from 'leaflet';
 import markerIcon from './marker.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
-import { Navigate, useParams, useSearchParams } from 'react-router-dom';
+import { Navigate, URLSearchParamsInit, useParams, useSearchParams } from 'react-router-dom';
 import { inRange, get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
-import '../App.css';
 
 const MarkerIcon = new Icon({
    iconUrl: markerIcon,
@@ -30,7 +29,7 @@ const MarkerIcon = new Icon({
 
 const divIcon = L.divIcon({
    className: '',
-   html: ReactDOMServer.renderToString(<div className="test" />),
+   html: ReactDOMServer.renderToString(<div className="map-marker-effect" />),
    iconSize: [0, 0],
    iconAnchor: [0, 0],
    popupAnchor: [0, 0],
@@ -43,6 +42,80 @@ const testWebP = (callback: (support: boolean) => void) => {
    };
    webP.src =
       'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+};
+
+interface MarkersProps {
+   mapData: MapData;
+   setSearchParams: (nextInit: URLSearchParamsInit, navigateOptions?: {
+      replace?: boolean | undefined;
+      state?: any;
+   } | undefined) => void;
+   setSelectedPosition: React.Dispatch<React.SetStateAction<L.LatLngTuple | null>>;
+   selectedPosition: LatLngTuple | null;
+   posStr: string | null;
+}
+
+interface MapData {
+   locale: string;
+   backgroundColor: string;
+   bounds: LatLngBoundsLiteral;
+}
+
+const Markers: React.FC<MarkersProps> = ({ mapData, setSearchParams, setSelectedPosition, selectedPosition, posStr }) => {
+   useMapEvents({
+      click(e) {
+         const {
+            latlng: { lat, lng },
+         } = e;
+         const pos: LatLngTuple = [lat, lng];
+         const bounds: LatLngBoundsLiteral = mapData.bounds;
+
+         const isInRange = pos.every((p, i) => {
+            const [min, max] = bounds.map(b => b[i]);
+            return inRange(p, min, max);
+         });
+
+         if (!isInRange) {
+            return;
+         }
+
+         setSearchParams(
+            {
+               p: encodeURIComponent(pos.join(' ')),
+            },
+            { replace: true }
+         );
+         setSelectedPosition(pos);
+      },
+   });
+
+   return selectedPosition ? (
+      <>
+         <Marker
+            icon={divIcon}
+            key={`${posStr}-test`}
+            position={selectedPosition}
+            opacity={1}
+            interactive={true}
+         />
+         <Marker
+            icon={MarkerIcon}
+            key={posStr}
+            position={selectedPosition}
+            interactive={true}
+         >
+            <Tooltip
+               className="remove-bubble pos-tooltip"
+               direction="top"
+               offset={[0, -4]}
+               opacity={1}
+               permanent
+            >
+               {posStr}
+            </Tooltip>
+         </Marker>
+      </>
+   ) : null;
 };
 
 const Map: React.FC = () => {
@@ -81,63 +154,6 @@ const Map: React.FC = () => {
       selectedPosition &&
       `${Math.round(selectedPosition[1])},${Math.round(selectedPosition[0])}`;
 
-   const Markers: React.FC = () => {
-      useMapEvents({
-         click(e) {
-            const {
-               latlng: { lat, lng },
-            } = e;
-            const pos: LatLngTuple = [lat, lng];
-            const bounds: LatLngBoundsLiteral = mapData.bounds;
-
-            const isInRange = pos.every((p, i) => {
-               const [min, max] = bounds.map(b => b[i]);
-               return inRange(p, min, max);
-            });
-
-            if (!isInRange) {
-               return;
-            }
-
-            setSearchParams(
-               {
-                  p: encodeURIComponent(pos.join(' ')),
-               },
-               { replace: true }
-            );
-            setSelectedPosition(pos);
-         },
-      });
-
-      return selectedPosition ? (
-         <>
-            <Marker
-               icon={divIcon}
-               key={`${posStr}-test`}
-               position={selectedPosition}
-               opacity={1}
-               interactive={true}
-            />
-            <Marker
-               icon={MarkerIcon}
-               key={posStr}
-               position={selectedPosition}
-               interactive={true}
-            >
-               <Tooltip
-                  className="remove-bubble pos-tooltip"
-                  direction="top"
-                  offset={[0, -4]}
-                  opacity={1}
-                  permanent
-               >
-                  {posStr}
-               </Tooltip>
-            </Marker>
-         </>
-      ) : null;
-   };
-
    if (!mapUrl) {
       return <></>;
    }
@@ -163,7 +179,7 @@ const Map: React.FC = () => {
                style={{ backgroundColor: mapData.backgroundColor }}
             >
                <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
-               <Markers />
+               <Markers mapData={mapData} setSearchParams={setSearchParams} setSelectedPosition={setSelectedPosition} selectedPosition={selectedPosition} posStr={posStr} />
                {/* <LayerControl position="topright">
                   <GroupedLayer
                      checked
@@ -171,17 +187,13 @@ const Map: React.FC = () => {
                      group="테스트"
                   >
                      <LayerGroup>
-                        <Circle
-                           center={[10, 10]}
-                           pathOptions={{ fillColor: 'blue' }}
-                           radius={200}
-                        />
-                        <Circle
-                           center={[20, 20]}
-                           pathOptions={{ fillColor: 'red' }}
-                           radius={100}
-                           stroke={false}
-                        />
+                        <Marker
+                           icon={MarkerIcon}
+                           key={posStr}
+                           position={[200, 200]}
+                           interactive={true}
+                        >
+                        </Marker>
                      </LayerGroup>
                   </GroupedLayer>
                   <GroupedLayer

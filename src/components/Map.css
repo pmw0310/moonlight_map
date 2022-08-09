@@ -16,3 +16,39 @@
    font-weight: 600;
    text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
 }
+
+.map-marker-effect {
+   width: 32px;
+   height: 32px;
+   animation: map-marker-effect 2.5s ease-out infinite;
+   background: currentcolor;
+   border: 1px solid;
+   border-radius: 50%;
+   bottom: -16px;
+   color:#7cf354;
+   left: -16px;
+   position: absolute;
+   right: -16px;
+   top: -16px;
+}
+
+@keyframes map-marker-effect {
+   0%, 100% {
+      background-color: #0000;
+      border-color: currentcolor;
+      opacity: 0;
+      transform: scale(0);
+   }
+   10% {
+      background-color: #0000;
+      border-color: currentcolor;
+      opacity: 1;
+      transform: scale(1);
+   }
+   75% {
+      background-color: currentcolor;
+      border-color: #0000;
+      opacity: 0;
+      transform: scale(3);
+   }
+}
