@@ -293,6 +293,20 @@
          ]
       ]
    },
+   "cave": {
+      "locale": "동굴*",
+      "backgroundColor": "#856D5B",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            512,
+            512
+         ]
+      ]
+   },
    "prison2": {
       "locale": "감옥2*",
       "backgroundColor": "#b89d79",
