@@ -9,6 +9,8 @@ import {
    Tooltip,
    LayerGroup,
    Circle,
+   useMapEvent,
+   useMap,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
@@ -118,6 +120,16 @@ const Markers: React.FC<MarkersProps> = ({ mapData, setSearchParams, setSelected
    ) : null;
 };
 
+function ChangeMapView({ coords }: any) {
+   const map = useMap();
+
+   if (coords) {
+      map.setView(coords, map.getZoom());
+   }
+
+   return null;
+}
+
 const Map: React.FC = () => {
    const { mapName } = useParams();
    const [searchParams, setSearchParams] = useSearchParams();
@@ -176,10 +188,12 @@ const Map: React.FC = () => {
                bounds={mapData.bounds}
                attributionControl={false}
                doubleClickZoom={false}
+               scrollWheelZoom={true}
                style={{ backgroundColor: mapData.backgroundColor }}
             >
                <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
                <Markers mapData={mapData} setSearchParams={setSearchParams} setSelectedPosition={setSelectedPosition} selectedPosition={selectedPosition} posStr={posStr} />
+               <ChangeMapView coords={selectedPosition} />
                {/* <LayerControl position="topright">
                   <GroupedLayer
                      checked
