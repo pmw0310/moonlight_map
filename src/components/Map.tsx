@@ -16,7 +16,7 @@ import { get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
-import { Markers, ScrollIcon } from './icon';
+import { Markers, icons } from './icon';
 
 export interface MapData {
    locale: string;
@@ -27,6 +27,7 @@ export interface MapData {
 export interface MarkerData {
    [group: string]: ReadonlyArray<{
       name: string;
+      icon: 'Scroll' | 'ScenicSpot';
       layers: ReadonlyArray<{
          layer: 'marker';
          position: LatLngTuple;
@@ -44,6 +45,12 @@ const testWebP = (callback: (support: boolean) => void) => {
       'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 };
 
+const isMobile = () => {
+   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+   );
+};
+
 const getPositionString = ([x, y]: LatLngTuple) =>
    `${Math.round(y)},${Math.round(x)}`;
 
@@ -53,10 +60,12 @@ const InitMapView: React.FC<{
    const map = useMap();
 
    useEffect(() => {
+      const zoom = isMobile() ? -1 : 0;
+
       if (coords) {
-         map.setView(coords, 0 /*map.getZoom()*/, { animate: false });
+         map.setView(coords, zoom, { animate: false });
       } else {
-         map.setZoom(0, { animate: false });
+         map.setZoom(zoom, { animate: false });
       }
    }, []);
 
@@ -143,42 +152,54 @@ const Map: React.FC = () => {
                   <LayerControl position="topright">
                      {Object.keys(markerData).map(group => {
                         const groupData = markerData[group];
-                        return groupData.map(({ name, layers }) => (
-                           <GroupedLayer
-                              key={`${group}_${name}`}
-                              checked
-                              name={name}
-                              group={group}
-                           >
-                              <LayerGroup>
-                                 {layers.map(({ position, popup }, index) => (
-                                    <Marker
-                                       key={`${name}_${index}`}
-                                       icon={ScrollIcon}
-                                       position={position}
-                                       interactive={true}
-                                       eventHandlers={{
-                                          mouseover: event =>
-                                             event.target.openPopup(),
-                                          mouseout: event =>
-                                             event.target.closePopup(),
-                                       }}
-                                    >
-                                       <Popup closeButton={false}>
-                                          {popup && (
-                                             <div className="font-bold">
-                                                {popup}
-                                             </div>
-                                          )}
-                                          <div>
-                                             {getPositionString(position)}
-                                          </div>
-                                       </Popup>
-                                    </Marker>
-                                 ))}
-                              </LayerGroup>
-                           </GroupedLayer>
-                        ));
+                        const isPc = !isMobile();
+
+                        return groupData.map(({ name, layers, icon }) => {
+                           const Icon = icons[icon];
+
+                           return (
+                              <GroupedLayer
+                                 key={`${group}_${name}`}
+                                 checked
+                                 name={name}
+                                 group={group}
+                              >
+                                 <LayerGroup>
+                                    {layers.map(
+                                       ({ position, popup }, index) => (
+                                          <Marker
+                                             key={`${name}_${index}`}
+                                             icon={Icon}
+                                             position={position}
+                                             interactive={true}
+                                             eventHandlers={
+                                                isPc
+                                                   ? {
+                                                        mouseover: event =>
+                                                           event.target.openPopup(),
+                                                        mouseout: event =>
+                                                           event.target.closePopup(),
+                                                     }
+                                                   : {}
+                                             }
+                                          >
+                                             <Popup closeButton={false}>
+                                                {popup && (
+                                                   <div className="font-bold">
+                                                      {popup}
+                                                   </div>
+                                                )}
+                                                <div>
+                                                   {getPositionString(position)}
+                                                </div>
+                                             </Popup>
+                                          </Marker>
+                                       )
+                                    )}
+                                 </LayerGroup>
+                              </GroupedLayer>
+                           );
+                        });
                      })}
                   </LayerControl>
                )}

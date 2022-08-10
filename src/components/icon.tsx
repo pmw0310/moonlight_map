@@ -11,6 +11,7 @@ import { URLSearchParamsInit } from 'react-router-dom';
 import { inRange } from 'lodash';
 import { MapData } from './Map';
 import { ReactComponent as TiedScrollIcon } from './tied-scroll.svg';
+import { ReactComponent as CameraIcon } from './camera.svg';
 
 interface MarkersProps {
    mapData: MapData;
@@ -30,7 +31,7 @@ interface MarkersProps {
    posStr: string | null;
 }
 
-export const ScrollIcon = L.divIcon({
+const Scroll = L.divIcon({
    className: '',
    html: ReactDOMServer.renderToString(
       <TiedScrollIcon
@@ -44,6 +45,26 @@ export const ScrollIcon = L.divIcon({
    iconSize: [24, 24],
    iconAnchor: [12, 12],
 });
+
+const ScenicSpot = L.divIcon({
+   className: '',
+   html: ReactDOMServer.renderToString(
+      <CameraIcon
+         width={24}
+         height={24}
+         fill="yellow"
+         stroke="black"
+         strokeWidth={12}
+      />
+   ),
+   iconSize: [24, 24],
+   iconAnchor: [12, 12],
+});
+
+export const icons = {
+   Scroll,
+   ScenicSpot,
+};
 
 export const MarkerIcon = new Icon({
    iconUrl: markerIcon,

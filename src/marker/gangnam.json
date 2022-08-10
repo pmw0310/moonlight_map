@@ -3,6 +3,7 @@
       "도감": [
          {
             "name": "명승 도감",
+            "icon": "ScenicSpot",
             "layers": [
                {
                   "layer": "marker",
@@ -48,6 +49,44 @@
                   "layer": "marker",
                   "position": [543, 156],
                   "popup": "강남 대불"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [405, 247]
+               },
+               {
+                  "layer": "marker",
+                  "position": [545, 435]
+               },
+               {
+                  "layer": "marker",
+                  "position": [407, 540]
+               },
+               {
+                  "layer": "marker",
+                  "position": [523, 246]
+               },
+               {
+                  "layer": "marker",
+                  "position": [420, 306]
+               },
+               {
+                  "layer": "marker",
+                  "position": [614, 256]
+               },
+               {
+                  "layer": "marker",
+                  "position": [656, 123]
+               },
+               {
+                  "layer": "marker",
+                  "position": [385, 405]
                }
             ]
          }
