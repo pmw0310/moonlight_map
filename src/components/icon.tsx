@@ -5,13 +5,13 @@ import { Marker, useMapEvents, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import L, { Icon } from 'leaflet';
-import markerIcon from './marker.png';
+import markerIcon from '../marker/marker.png';
 import { LatLngBoundsLiteral, LatLngTuple } from 'leaflet';
 import { URLSearchParamsInit } from 'react-router-dom';
 import { inRange } from 'lodash';
 import { MapData } from './Map';
-import { ReactComponent as TiedScrollIcon } from './tied-scroll.svg';
-import { ReactComponent as CameraIcon } from './camera.svg';
+import { ReactComponent as TiedScrollIcon } from '../marker/tied-scroll.svg';
+import { ReactComponent as CameraIcon } from '../marker/camera.svg';
 
 interface MarkersProps {
    mapData: MapData;
