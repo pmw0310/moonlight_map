@@ -349,6 +349,20 @@
          ]
       ]
    },
+   "songrim": {
+      "locale": "송림*",
+      "backgroundColor": "#8f9a90",
+      "bounds": [
+         [
+            1,
+            1
+         ],
+         [
+            1024,
+            1024
+         ]
+      ]
+   },
    "yeonhapjeon": {
       "locale": "연합전*",
       "backgroundColor": "#668586",
