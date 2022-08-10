@@ -184,6 +184,9 @@ const Map: React.FC = () => {
                                              }
                                           >
                                              <Popup closeButton={false}>
+                                                <div className="font-bold">
+                                                   {name}
+                                                </div>
                                                 {popup && (
                                                    <div className="font-bold">
                                                       {popup}
