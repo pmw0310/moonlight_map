@@ -1,41 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useMemo } from 'react';
-import ReactDOMServer from 'react-dom/server';
 import {
    MapContainer,
    Marker,
    Popup,
    ImageOverlay,
-   useMapEvents,
-   Tooltip,
    LayerGroup,
-   Circle,
-   useMapEvent,
    useMap,
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
-import L, { Icon } from 'leaflet';
-import markerIcon from './marker.png';
 import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
-import { Navigate, URLSearchParamsInit, useParams, useSearchParams } from 'react-router-dom';
-import { inRange, get } from 'lodash';
+import { Navigate, useParams, useSearchParams } from 'react-router-dom';
+import { get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
+import { Markers, ScrollIcon } from './icon';
 
-const MarkerIcon = new Icon({
-   iconUrl: markerIcon,
-   iconSize: [20, 20],
-   iconAnchor: [10, 10],
-});
+export interface MapData {
+   locale: string;
+   backgroundColor: string;
+   bounds: LatLngBoundsLiteral;
+}
 
-const divIcon = L.divIcon({
-   className: '',
-   html: ReactDOMServer.renderToString(<div className="map-marker-effect" />),
-   iconSize: [0, 0],
-   iconAnchor: [0, 0],
-   popupAnchor: [0, 0],
-});
+export interface MarkerData {
+   [group: string]: ReadonlyArray<{
+      name: string;
+      layers: ReadonlyArray<{
+         layer: 'marker';
+         position: LatLngTuple;
+         popup?: string;
+      }>;
+   }>;
+}
 
 const testWebP = (callback: (support: boolean) => void) => {
    const webP = new Image();
@@ -46,89 +44,24 @@ const testWebP = (callback: (support: boolean) => void) => {
       'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 };
 
-interface MarkersProps {
-   mapData: MapData;
-   setSearchParams: (nextInit: URLSearchParamsInit, navigateOptions?: {
-      replace?: boolean | undefined;
-      state?: any;
-   } | undefined) => void;
-   setSelectedPosition: React.Dispatch<React.SetStateAction<L.LatLngTuple | null>>;
-   selectedPosition: LatLngTuple | null;
-   posStr: string | null;
-}
+const getPositionString = ([x, y]: LatLngTuple) =>
+   `${Math.round(y)},${Math.round(x)}`;
 
-interface MapData {
-   locale: string;
-   backgroundColor: string;
-   bounds: LatLngBoundsLiteral;
-}
-
-const Markers: React.FC<MarkersProps> = ({ mapData, setSearchParams, setSelectedPosition, selectedPosition, posStr }) => {
-   useMapEvents({
-      click(e) {
-         const {
-            latlng: { lat, lng },
-         } = e;
-         const pos: LatLngTuple = [lat, lng];
-         const bounds: LatLngBoundsLiteral = mapData.bounds;
-
-         const isInRange = pos.every((p, i) => {
-            const [min, max] = bounds.map(b => b[i]);
-            return inRange(p, min, max);
-         });
-
-         if (!isInRange) {
-            return;
-         }
-
-         setSearchParams(
-            {
-               p: encodeURIComponent(pos.join(' ')),
-            },
-            { replace: true }
-         );
-         setSelectedPosition(pos);
-      },
-   });
-
-   return selectedPosition ? (
-      <>
-         <Marker
-            icon={divIcon}
-            key={`${posStr}-test`}
-            position={selectedPosition}
-            opacity={1}
-            interactive={true}
-         />
-         <Marker
-            icon={MarkerIcon}
-            key={posStr}
-            position={selectedPosition}
-            interactive={true}
-         >
-            <Tooltip
-               className="remove-bubble pos-tooltip"
-               direction="top"
-               offset={[0, -4]}
-               opacity={1}
-               permanent
-            >
-               {posStr}
-            </Tooltip>
-         </Marker>
-      </>
-   ) : null;
-};
-
-function ChangeMapView({ coords }: any) {
+const InitMapView: React.FC<{
+   coords: LatLngTuple | null;
+}> = ({ coords }) => {
    const map = useMap();
 
-   if (coords) {
-      map.setView(coords, map.getZoom());
-   }
+   useEffect(() => {
+      if (coords) {
+         map.setView(coords, 0 /*map.getZoom()*/, { animate: false });
+      } else {
+         map.setZoom(0, { animate: false });
+      }
+   }, []);
 
    return null;
-}
+};
 
 const Map: React.FC = () => {
    const { mapName } = useParams();
@@ -149,6 +82,14 @@ const Map: React.FC = () => {
 
    const [mapUrl, setMapUrl] = useState<string | null>(null);
 
+   const markerData = useMemo<MarkerData | null>(() => {
+      try {
+         return require(`../marker/${mapName}.json`)?.group;
+      } catch {
+         return null;
+      }
+   }, [mapName]);
+
    const mapData = useMemo(() => {
       if (!mapName) {
          return;
@@ -162,9 +103,7 @@ const Map: React.FC = () => {
       });
    }, [mapName]);
 
-   const posStr =
-      selectedPosition &&
-      `${Math.round(selectedPosition[1])},${Math.round(selectedPosition[0])}`;
+   const posStr = selectedPosition && getPositionString(selectedPosition);
 
    if (!mapUrl) {
       return <></>;
@@ -192,8 +131,57 @@ const Map: React.FC = () => {
                style={{ backgroundColor: mapData.backgroundColor }}
             >
                <ImageOverlay url={mapUrl} bounds={mapData.bounds} />
-               <Markers mapData={mapData} setSearchParams={setSearchParams} setSelectedPosition={setSelectedPosition} selectedPosition={selectedPosition} posStr={posStr} />
-               <ChangeMapView coords={selectedPosition} />
+               <Markers
+                  mapData={mapData}
+                  setSearchParams={setSearchParams}
+                  setSelectedPosition={setSelectedPosition}
+                  selectedPosition={selectedPosition}
+                  posStr={posStr}
+               />
+               <InitMapView coords={selectedPosition} />
+               {markerData && (
+                  <LayerControl position="topright">
+                     {Object.keys(markerData).map(group => {
+                        const groupData = markerData[group];
+                        return groupData.map(({ name, layers }) => (
+                           <GroupedLayer
+                              key={`${group}_${name}`}
+                              checked
+                              name={name}
+                              group={group}
+                           >
+                              <LayerGroup>
+                                 {layers.map(({ position, popup }, index) => (
+                                    <Marker
+                                       key={`${name}_${index}`}
+                                       icon={ScrollIcon}
+                                       position={position}
+                                       interactive={true}
+                                       eventHandlers={{
+                                          mouseover: event =>
+                                             event.target.openPopup(),
+                                          mouseout: event =>
+                                             event.target.closePopup(),
+                                       }}
+                                    >
+                                       <Popup closeButton={false}>
+                                          {popup && (
+                                             <div className="font-bold">
+                                                {popup}
+                                             </div>
+                                          )}
+                                          <div>
+                                             {getPositionString(position)}
+                                          </div>
+                                       </Popup>
+                                    </Marker>
+                                 ))}
+                              </LayerGroup>
+                           </GroupedLayer>
+                        ));
+                     })}
+                  </LayerControl>
+               )}
                {/* <LayerControl position="topright">
                   <GroupedLayer
                      checked

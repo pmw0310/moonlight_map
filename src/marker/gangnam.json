@@ -1,0 +1,56 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [513, 919],
+                  "popup": "가을 산"
+               },
+               {
+                  "layer": "marker",
+                  "position": [372, 379],
+                  "popup": "단풍이 보이는 다리"
+               },
+               {
+                  "layer": "marker",
+                  "position": [394, 535],
+                  "popup": "물가의 누각"
+               },
+               {
+                  "layer": "marker",
+                  "position": [438, 480],
+                  "popup": "늦봄의 장터"
+               },
+               {
+                  "layer": "marker",
+                  "position": [358, 501],
+                  "popup": "비 내리는 강"
+               },
+               {
+                  "layer": "marker",
+                  "position": [865, 326],
+                  "popup": "가을날의 연못"
+               },
+               {
+                  "layer": "marker",
+                  "position": [442, 273],
+                  "popup": "연못 야경"
+               },
+               {
+                  "layer": "marker",
+                  "position": [547, 396],
+                  "popup": "강남 3월의 아침"
+               },
+               {
+                  "layer": "marker",
+                  "position": [543, 156],
+                  "popup": "강남 대불"
+               }
+            ]
+         }
+      ]
+   }
+}
