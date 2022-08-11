@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Marker, useMapEvents, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -12,6 +12,7 @@ import { inRange } from 'lodash';
 import { MapData } from './Map';
 import { ReactComponent as TiedScrollIcon } from '../marker/tied-scroll.svg';
 import { ReactComponent as CameraIcon } from '../marker/camera.svg';
+import { MapEventContext } from '../context/mapEvent';
 
 interface MarkersProps {
    mapData: MapData;
@@ -31,9 +32,8 @@ interface MarkersProps {
    posStr: string | null;
 }
 
-const Scroll = L.divIcon({
-   className: '',
-   html: ReactDOMServer.renderToString(
+export const icons = {
+   Scroll: (
       <TiedScrollIcon
          width={24}
          height={24}
@@ -42,13 +42,7 @@ const Scroll = L.divIcon({
          strokeWidth={12}
       />
    ),
-   iconSize: [24, 24],
-   iconAnchor: [12, 12],
-});
-
-const ScenicSpot = L.divIcon({
-   className: '',
-   html: ReactDOMServer.renderToString(
+   ScenicSpot: (
       <CameraIcon
          width={24}
          height={24}
@@ -57,13 +51,21 @@ const ScenicSpot = L.divIcon({
          strokeWidth={12}
       />
    ),
-   iconSize: [24, 24],
-   iconAnchor: [12, 12],
-});
+};
 
-export const icons = {
-   Scroll,
-   ScenicSpot,
+export const markerIcons = {
+   Scroll: L.divIcon({
+      className: '',
+      html: ReactDOMServer.renderToString(icons.Scroll),
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+   }),
+   ScenicSpot: L.divIcon({
+      className: '',
+      html: ReactDOMServer.renderToString(icons.ScenicSpot),
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+   }),
 };
 
 export const MarkerIcon = new Icon({
@@ -87,8 +89,14 @@ export const Markers: FC<MarkersProps> = ({
    selectedPosition,
    posStr,
 }) => {
+   const { disabledMapEvent } = useContext(MapEventContext);
+
    useMapEvents({
       click(e) {
+         if (disabledMapEvent) {
+            return;
+         }
+
          const {
             latlng: { lat, lng },
          } = e;

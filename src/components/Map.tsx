@@ -16,7 +16,7 @@ import { get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
 import mapsData from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
-import { Markers, icons } from './icon';
+import { Markers, markerIcons, icons } from './icon';
 
 export interface MapData {
    locale: string;
@@ -155,13 +155,13 @@ const Map: React.FC = () => {
                         const isPc = !isMobile();
 
                         return groupData.map(({ name, layers, icon }) => {
-                           const Icon = icons[icon];
+                           const Icon = markerIcons[icon];
 
                            return (
                               <GroupedLayer
                                  key={`${group}_${name}`}
                                  checked
-                                 name={name}
+                                 name={icon ? `${icon}:${name}` : name}
                                  group={group}
                               >
                                  <LayerGroup>

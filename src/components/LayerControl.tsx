@@ -13,6 +13,8 @@ import lodashGroupBy from 'lodash.groupby';
 import { LayersControlProvider } from './layerControlContext';
 
 import createControlledLayer from './controlledLayer';
+import { icons } from './icon';
+import { get } from 'lodash';
 
 const POSITION_CLASSES: { [key: string]: string } = {
    bottomleft: 'leaflet-bottom leaflet-left',
@@ -52,13 +54,16 @@ const LayerControl = ({ position = 'topright', children }: IProps) => {
       },
    });
 
-   const onLayerClick = (event: React.ChangeEvent<HTMLInputElement>, layerObj: ILayerObj) => {
+   const onLayerClick = (
+      event: React.ChangeEvent<HTMLInputElement>,
+      layerObj: ILayerObj
+   ) => {
       event.stopPropagation();
 
       if (map?.hasLayer(layerObj.layer)) {
          map.removeLayer(layerObj.layer);
          setLayers(
-            layers.map((layer) => {
+            layers.map(layer => {
                if (layer.id === layerObj.id)
                   return {
                      ...layer,
@@ -70,7 +75,7 @@ const LayerControl = ({ position = 'topright', children }: IProps) => {
       } else {
          map.addLayer(layerObj.layer);
          setLayers(
-            layers.map((layer) => {
+            layers.map(layer => {
                if (layer.id === layerObj.id)
                   return {
                      ...layer,
@@ -82,24 +87,27 @@ const LayerControl = ({ position = 'topright', children }: IProps) => {
       }
    };
 
-   const onGroupAdd = useCallback((layer: Layer, name: string, group: string) => {
-      const id = Util.stamp(layer);
-      const isInLayer = layers.some(({ id: layerId }) => layerId === id);
+   const onGroupAdd = useCallback(
+      (layer: Layer, name: string, group: string) => {
+         const id = Util.stamp(layer);
+         const isInLayer = layers.some(({ id: layerId }) => layerId === id);
 
-      if (isInLayer) {
-         return;
-      }
+         if (isInLayer) {
+            return;
+         }
 
-      layers.push({
-         layer,
-         group,
-         name,
-         checked: map?.hasLayer(layer),
-         id,
-      });
+         layers.push({
+            layer,
+            group,
+            name,
+            checked: map?.hasLayer(layer),
+            id,
+         });
 
-      setLayers(layers);
-   }, [layers]);
+         setLayers(layers);
+      },
+      [layers]
+   );
 
    const groupedLayers = lodashGroupBy(layers, 'group');
 
@@ -132,21 +140,44 @@ const LayerControl = ({ position = 'topright', children }: IProps) => {
                               >
                                  <Typography>{section}</Typography>
                               </AccordionSummary>
-                              {groupedLayers[section]?.map((layerObj, index) => (
-                                 <AccordionDetails key={`accDetails_${index}`}>
-                                    <FormControlLabel
-                                       control={
-                                          <Checkbox
-                                             checked={layerObj.checked}
-                                             onChange={(e) => onLayerClick(e, layerObj)}
-                                             name="checkedB"
-                                             color="primary"
-                                          />
-                                       }
-                                       label={layerObj.name}
-                                    />
-                                 </AccordionDetails>
-                              ))}
+                              {groupedLayers[section]?.map(
+                                 (layerObj, index) => (
+                                    <AccordionDetails
+                                       key={`accDetails_${index}`}
+                                    >
+                                       <FormControlLabel
+                                          control={
+                                             <Checkbox
+                                                checked={layerObj.checked}
+                                                onChange={e =>
+                                                   onLayerClick(e, layerObj)
+                                                }
+                                                name="checkedB"
+                                                color="primary"
+                                             />
+                                          }
+                                          label={(() => {
+                                             const names =
+                                                layerObj.name.split(':');
+
+                                             if (names.length === 2) {
+                                                const [iconName, name] = names;
+                                                return (
+                                                   <span className="flex flex-row items-center">
+                                                      <span className="mr-2.5">
+                                                         {get(icons, iconName)}
+                                                      </span>
+                                                      {name}
+                                                   </span>
+                                                );
+                                             }
+
+                                             return names[0];
+                                          })()}
+                                       />
+                                    </AccordionDetails>
+                                 )
+                              )}
                            </Accordion>
                         ))}
                   </Paper>
