@@ -5,13 +5,14 @@ import { Marker, useMapEvents, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './Map.css';
 import L, { Icon } from 'leaflet';
-import markerIcon from '../marker/marker.png';
 import { LatLngBoundsLiteral, LatLngTuple } from 'leaflet';
 import { URLSearchParamsInit } from 'react-router-dom';
 import { inRange } from 'lodash';
 import { MapData } from './Map';
-import { ReactComponent as TiedScrollIcon } from '../marker/tied-scroll.svg';
-import { ReactComponent as CameraIcon } from '../marker/camera.svg';
+import markerIcon from '../marker/image/marker.png';
+import { ReactComponent as TiedScrollIcon } from '../marker/image/tied-scroll.svg';
+import { ReactComponent as CameraIcon } from '../marker/image/camera.svg';
+import { ReactComponent as ButterflyIcon } from '../marker/image/butterfly.svg';
 import { MapEventContext } from '../context/mapEvent';
 
 interface MarkersProps {
@@ -39,7 +40,7 @@ export const icons = {
          height={24}
          fill="yellow"
          stroke="black"
-         strokeWidth={12}
+         strokeWidth={8}
       />
    ),
    ScenicSpot: (
@@ -49,6 +50,15 @@ export const icons = {
          fill="yellow"
          stroke="black"
          strokeWidth={12}
+      />
+   ),
+   Butterfly: (
+      <ButterflyIcon
+         width={24}
+         height={24}
+         fill="yellow"
+         stroke="black"
+         strokeWidth={1}
       />
    ),
 };
@@ -63,6 +73,12 @@ export const markerIcons = {
    ScenicSpot: L.divIcon({
       className: '',
       html: ReactDOMServer.renderToString(icons.ScenicSpot),
+      iconSize: [24, 24],
+      iconAnchor: [12, 12],
+   }),
+   Butterfly: L.divIcon({
+      className: '',
+      html: ReactDOMServer.renderToString(icons.Butterfly),
       iconSize: [24, 24],
       iconAnchor: [12, 12],
    }),

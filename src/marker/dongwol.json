@@ -1,0 +1,47 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "나비 도감",
+            "icon": "Butterfly",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [543, 127],
+                  "popup": "흰점 부처나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [625, 824],
+                  "popup": "톱니무늬 나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [378, 342],
+                  "popup": "보라색 야광 나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [555, 479],
+                  "popup": "목란청 호랑나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [789, 350],
+                  "popup": "야광 나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [411, 365],
+                  "popup": "비단 수정나비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [530, 862],
+                  "popup": "표범나비"
+               }
+            ]
+         }
+      ]
+   }
+}

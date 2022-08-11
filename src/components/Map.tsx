@@ -14,9 +14,9 @@ import { LatLngBoundsLiteral, LatLngTuple, CRS } from 'leaflet';
 import { Navigate, useParams, useSearchParams } from 'react-router-dom';
 import { get } from 'lodash';
 import { Helmet } from 'react-helmet-async';
-import mapsData from '../maps.json';
+import mapsDatas from '../maps.json';
 import LayerControl, { GroupedLayer } from './LayerControl';
-import { Markers, markerIcons, icons } from './icon';
+import { Markers, markerIcons } from './icon';
 
 export interface MapData {
    locale: string;
@@ -27,7 +27,7 @@ export interface MapData {
 export interface MarkerData {
    [group: string]: ReadonlyArray<{
       name: string;
-      icon: 'Scroll' | 'ScenicSpot';
+      icon: 'Scroll' | 'ScenicSpot' | 'Butterfly';
       layers: ReadonlyArray<{
          layer: 'marker';
          position: LatLngTuple;
@@ -56,11 +56,12 @@ const getPositionString = ([x, y]: LatLngTuple) =>
 
 const InitMapView: React.FC<{
    coords: LatLngTuple | null;
-}> = ({ coords }) => {
+   minZoom: number;
+}> = ({ coords, minZoom }) => {
    const map = useMap();
 
    useEffect(() => {
-      const zoom = isMobile() ? -1 : 0;
+      const zoom = isMobile() ? minZoom : minZoom + 1;
 
       if (coords) {
          map.setView(coords, zoom, { animate: false });
@@ -99,12 +100,25 @@ const Map: React.FC = () => {
       }
    }, [mapName]);
 
-   const mapData = useMemo(() => {
+   const mapData = useMemo<MapData | undefined>(() => {
       if (!mapName) {
          return;
       }
-      return get(mapsData, mapName);
+      return get(mapsDatas, mapName);
    }, [mapName]);
+
+   const { minZoom, maxZoom } = useMemo(() => {
+      if (!mapData) {
+         return { minZoom: -1, maxZoom: 4 };
+      }
+      const [[min], [max]] = mapData.bounds;
+      const minZoom = Math.max(-2, 2 - Math.floor((max - min) / 250));
+      const maxZoom = minZoom + 5;
+      return {
+         minZoom,
+         maxZoom,
+      };
+   }, [mapData]);
 
    useEffect(() => {
       testWebP(support => {
@@ -130,8 +144,8 @@ const Map: React.FC = () => {
          <div className="w-screen h-screen">
             <MapContainer
                className="w-full h-full"
-               minZoom={-1}
-               maxZoom={4}
+               minZoom={minZoom}
+               maxZoom={maxZoom}
                crs={CRS.Simple}
                bounds={mapData.bounds}
                attributionControl={false}
@@ -147,7 +161,7 @@ const Map: React.FC = () => {
                   selectedPosition={selectedPosition}
                   posStr={posStr}
                />
-               <InitMapView coords={selectedPosition} />
+               <InitMapView coords={selectedPosition} minZoom={minZoom} />
                {markerData && (
                   <LayerControl position="topright">
                      {Object.keys(markerData).map(group => {
