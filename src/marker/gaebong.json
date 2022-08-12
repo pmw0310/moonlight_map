@@ -1,0 +1,95 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [943, 836],
+                  "popup": "오봉루 경치"
+               },
+               {
+                  "layer": "marker",
+                  "position": [468, 241],
+                  "popup": "연못 정자"
+               },
+               {
+                  "layer": "marker",
+                  "position": [378, 740],
+                  "popup": "노을이 해를 가린 곳"
+               },
+               {
+                  "layer": "marker",
+                  "position": [876, 773],
+                  "popup": "개봉을 한눈에"
+               },
+               {
+                  "layer": "marker",
+                  "position": [940, 737],
+                  "popup": "상국사"
+               },
+               {
+                  "layer": "marker",
+                  "position": [251, 727],
+                  "popup": "만불굴"
+               },
+               {
+                  "layer": "marker",
+                  "position": [942, 437],
+                  "popup": "경성의 꿈"
+               },
+               {
+                  "layer": "marker",
+                  "position": [325, 341],
+                  "popup": "나루토 갈대밭"
+               },
+               {
+                  "layer": "marker",
+                  "position": [597, 263],
+                  "popup": "연꽃바다"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [643, 412]
+               },
+               {
+                  "layer": "marker",
+                  "position": [758, 475]
+               },
+               {
+                  "layer": "marker",
+                  "position": [584, 683]
+               },
+               {
+                  "layer": "marker",
+                  "position": [882, 728]
+               },
+               {
+                  "layer": "marker",
+                  "position": [497, 514]
+               },
+               {
+                  "layer": "marker",
+                  "position": [688, 695]
+               },
+               {
+                  "layer": "marker",
+                  "position": [440, 602]
+               },
+               {
+                  "layer": "marker",
+                  "position": [613, 552]
+               }
+            ]
+         }
+      ]
+   }
+}

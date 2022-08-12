@@ -41,6 +41,67 @@
                   "popup": "표범나비"
                }
             ]
+         },
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [921, 977],
+                  "popup": "당풍 오솔길"
+               },
+               {
+                  "layer": "marker",
+                  "position": [172, 886],
+                  "popup": "석양"
+               },
+               {
+                  "layer": "marker",
+                  "position": [410, 371],
+                  "popup": "만경 꽃바다"
+               },
+               {
+                  "layer": "marker",
+                  "position": [787, 355],
+                  "popup": "붉은 매화 향기"
+               },
+               {
+                  "layer": "marker",
+                  "position": [434, 659],
+                  "popup": "천향의 밤"
+               },
+               {
+                  "layer": "marker",
+                  "position": [473, 860],
+                  "popup": "배 세운 바닷가"
+               },
+               {
+                  "layer": "marker",
+                  "position": [409, 890],
+                  "popup": "바닷가의 정자"
+               },
+               {
+                  "layer": "marker",
+                  "position": [459, 406],
+                  "popup": "외로운 그림자"
+               },
+               {
+                  "layer": "marker",
+                  "position": [244, 165],
+                  "popup": "골짜기의 봄비"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [270, 317]
+               }
+            ]
          }
       ]
    }

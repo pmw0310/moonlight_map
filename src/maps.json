@@ -88,7 +88,15 @@
       ]
    },
    "hyeopgaekdo": {
-      "locale": "협죽도",
+      "locale": "협객도",
+      "backgroundColor": "#4F758C",
+      "bounds": [
+         [1, 1],
+         [1024, 1024]
+      ]
+   },
+   "cheonrudo": {
+      "locale": "천루도",
       "backgroundColor": "#4F758C",
       "bounds": [
          [1, 1],

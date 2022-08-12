@@ -1,0 +1,52 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [786, 778],
+                  "popup": "구름 위의 안개바다"
+               },
+               {
+                  "layer": "marker",
+                  "position": [583, 504],
+                  "popup": "불타는 들판"
+               },
+               {
+                  "layer": "marker",
+                  "position": [509, 606],
+                  "popup": "어둠속의 태극"
+               },
+               {
+                  "layer": "marker",
+                  "position": [426, 269],
+                  "popup": "빛을 거두고"
+               },
+               {
+                  "layer": "marker",
+                  "position": [575, 898],
+                  "popup": "금옥 계단"
+               },
+               {
+                  "layer": "marker",
+                  "position": [408, 516],
+                  "popup": "발톱 숨긴 곳"
+               },
+               {
+                  "layer": "marker",
+                  "position": [120, 814],
+                  "popup": "가을색 짙은 역"
+               },
+               {
+                  "layer": "marker",
+                  "position": [146, 98],
+                  "popup": "산속 잔도"
+               }
+            ]
+         }
+      ]
+   }
+}

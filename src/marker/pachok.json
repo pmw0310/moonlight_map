@@ -1,0 +1,62 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [377, 919],
+                  "popup": "노을 속의 산"
+               },
+               {
+                  "layer": "marker",
+                  "position": [838, 267],
+                  "popup": "파산의 가을"
+               },
+               {
+                  "layer": "marker",
+                  "position": [257, 117],
+                  "popup": "관죽"
+               },
+               {
+                  "layer": "marker",
+                  "position": [569, 981],
+                  "popup": "파산의 밤"
+               },
+               {
+                  "layer": "marker",
+                  "position": [475, 821],
+                  "popup": "가을의 강물"
+               },
+               {
+                  "layer": "marker",
+                  "position": [68, 198],
+                  "popup": "그윽한 대숲"
+               },
+               {
+                  "layer": "marker",
+                  "position": [828, 826],
+                  "popup": "입추"
+               },
+               {
+                  "layer": "marker",
+                  "position": [510, 334],
+                  "popup": "누각과 대나무"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [431, 266]
+               }
+            ]
+         }
+      ]
+   }
+}

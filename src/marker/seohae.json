@@ -1,0 +1,62 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [113, 915],
+                  "popup": "저녁의 당풍숲"
+               },
+               {
+                  "layer": "marker",
+                  "position": [92, 933],
+                  "popup": "붉은 당품숲"
+               },
+               {
+                  "layer": "marker",
+                  "position": [905, 550],
+                  "popup": "가을 바람"
+               },
+               {
+                  "layer": "marker",
+                  "position": [805, 857],
+                  "popup": "올곧은 신도당"
+               },
+               {
+                  "layer": "marker",
+                  "position": [805, 923],
+                  "popup": "광야의 하늘"
+               },
+               {
+                  "layer": "marker",
+                  "position": [384, 153],
+                  "popup": "물가의 풀밭"
+               },
+               {
+                  "layer": "marker",
+                  "position": [865, 661],
+                  "popup": "가을 하늘"
+               },
+               {
+                  "layer": "marker",
+                  "position": [624, 145],
+                  "popup": "하일능공"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [927, 889]
+               }
+            ]
+         }
+      ]
+   }
+}

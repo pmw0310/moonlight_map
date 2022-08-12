@@ -1,0 +1,62 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [510, 598],
+                  "popup": "꽃 핀 골짜기"
+               },
+               {
+                  "layer": "marker",
+                  "position": [550, 643],
+                  "popup": "사막 호수의 보슬비"
+               },
+               {
+                  "layer": "marker",
+                  "position": [73, 501],
+                  "popup": "정상에 올라"
+               },
+               {
+                  "layer": "marker",
+                  "position": [552, 793],
+                  "popup": "매화 잔향"
+               },
+               {
+                  "layer": "marker",
+                  "position": [764, 561],
+                  "popup": "광야의 푸른 빛"
+               },
+               {
+                  "layer": "marker",
+                  "position": [308, 134],
+                  "popup": "우뚝 선 산들"
+               },
+               {
+                  "layer": "marker",
+                  "position": [216, 764],
+                  "popup": "당당한 신위"
+               },
+               {
+                  "layer": "marker",
+                  "position": [329, 560],
+                  "popup": "사막을 지나며"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [200, 754]
+               }
+            ]
+         }
+      ]
+   }
+}

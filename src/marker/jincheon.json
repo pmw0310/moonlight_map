@@ -1,0 +1,77 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "나비 도감",
+            "icon": "Butterfly",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [857, 129],
+                  "popup": "분홍 나방"
+               }
+            ]
+         },
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [781, 594],
+                  "popup": "빙설검의"
+               },
+               {
+                  "layer": "marker",
+                  "position": [266, 768],
+                  "popup": "꽃이 핀 언덕"
+               },
+               {
+                  "layer": "marker",
+                  "position": [649, 741],
+                  "popup": "이름 봄"
+               },
+               {
+                  "layer": "marker",
+                  "position": [439, 674],
+                  "popup": "맑은 날 등상"
+               },
+               {
+                  "layer": "marker",
+                  "position": [754, 316],
+                  "popup": "붉은 빛"
+               },
+               {
+                  "layer": "marker",
+                  "position": [440, 260],
+                  "popup": "한산으로"
+               },
+               {
+                  "layer": "marker",
+                  "position": [321, 593],
+                  "popup": "아담한 개울가"
+               },
+               {
+                  "layer": "marker",
+                  "position": [793, 294],
+                  "popup": "공허한 눈꽃"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [792, 536]
+               },
+               {
+                  "layer": "marker",
+                  "position": [620, 743]
+               }
+            ]
+         }
+      ]
+   }
+}

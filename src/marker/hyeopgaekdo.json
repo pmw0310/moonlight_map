@@ -1,0 +1,52 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [181, 544],
+                  "popup": "장미를 그리며"
+               },
+               {
+                  "layer": "marker",
+                  "position": [310, 675],
+                  "popup": "벼랑끝의 나무"
+               },
+               {
+                  "layer": "marker",
+                  "position": [505, 298],
+                  "popup": "은하수"
+               },
+               {
+                  "layer": "marker",
+                  "position": [160, 547],
+                  "popup": "강호연파"
+               },
+               {
+                  "layer": "marker",
+                  "position": [416, 352],
+                  "popup": "달밤"
+               },
+               {
+                  "layer": "marker",
+                  "position": [928, 236],
+                  "popup": "재일우"
+               },
+               {
+                  "layer": "marker",
+                  "position": [357, 354],
+                  "popup": "무인고도"
+               },
+               {
+                  "layer": "marker",
+                  "position": [443, 512],
+                  "popup": "당신의 길"
+               }
+            ]
+         }
+      ]
+   }
+}

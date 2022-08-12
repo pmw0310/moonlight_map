@@ -61,7 +61,8 @@ const InitMapView: React.FC<{
    const map = useMap();
 
    useEffect(() => {
-      const zoom = isMobile() ? minZoom : minZoom + 1;
+      // const zoom = isMobile() ? minZoom : minZoom + 1;
+      const zoom = minZoom + 1;
 
       if (coords) {
          map.setView(coords, zoom, { animate: false });
@@ -112,7 +113,7 @@ const Map: React.FC = () => {
          return { minZoom: -1, maxZoom: 4 };
       }
       const [[min], [max]] = mapData.bounds;
-      const minZoom = Math.max(-2, 2 - Math.floor((max - min) / 250));
+      const minZoom = Math.max(-2, 2 - Math.floor((max - min) / 300));
       const maxZoom = minZoom + 5;
       return {
          minZoom,

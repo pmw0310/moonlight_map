@@ -1,0 +1,52 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [870, 661],
+                  "popup": "천년의 소원"
+               },
+               {
+                  "layer": "marker",
+                  "position": [309, 455],
+                  "popup": "꽃날림 정자"
+               },
+               {
+                  "layer": "marker",
+                  "position": [801, 596],
+                  "popup": "남산의 숲"
+               },
+               {
+                  "layer": "marker",
+                  "position": [334, 142],
+                  "popup": "삼각주 나루터"
+               },
+               {
+                  "layer": "marker",
+                  "position": [300, 224],
+                  "popup": "시골 마을"
+               },
+               {
+                  "layer": "marker",
+                  "position": [552, 423],
+                  "popup": "은빛 세계"
+               },
+               {
+                  "layer": "marker",
+                  "position": [561, 684],
+                  "popup": "새하얀 산길"
+               },
+               {
+                  "layer": "marker",
+                  "position": [619, 394],
+                  "popup": "정원 경치"
+               }
+            ]
+         }
+      ]
+   }
+}

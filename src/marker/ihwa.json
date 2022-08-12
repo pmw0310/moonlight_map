@@ -1,0 +1,62 @@
+{
+   "group": {
+      "도감": [
+         {
+            "name": "명승 도감",
+            "icon": "ScenicSpot",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [716, 551],
+                  "popup": "꽃에 얼굴을 비추며"
+               },
+               {
+                  "layer": "marker",
+                  "position": [889, 909],
+                  "popup": "장명등"
+               },
+               {
+                  "layer": "marker",
+                  "position": [207, 558],
+                  "popup": "흔들리는 연꽃"
+               },
+               {
+                  "layer": "marker",
+                  "position": [204, 859],
+                  "popup": "그윽한 향기"
+               },
+               {
+                  "layer": "marker",
+                  "position": [281, 696],
+                  "popup": "선인도"
+               },
+               {
+                  "layer": "marker",
+                  "position": [304, 84],
+                  "popup": "사무치는 파도"
+               },
+               {
+                  "layer": "marker",
+                  "position": [525, 689],
+                  "popup": "천공의 섬"
+               },
+               {
+                  "layer": "marker",
+                  "position": [520, 460],
+                  "popup": "따듯한 바람"
+               }
+            ]
+         },
+         {
+            "name": "서화 도감",
+            "icon": "Scroll",
+            "layers": [
+               {
+                  "layer": "marker",
+                  "position": [560, 386]
+               }
+            ]
+         }
+      ]
+   }
+}
